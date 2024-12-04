@@ -26,12 +26,12 @@ let data = [
 
 // Imprimer el primer usuario del array
 app.get('/users/user1/', (req, res) => {
-  res.json(data[0])
+  res.json(data[0]);
 });
 
 // Imprimir todos los usuarios del array
 app.get('/users/', (req, res) => {
-  res.json(data)
+  res.json(data);
 });
 
 // Imprimir usuario segun el ID
@@ -42,16 +42,29 @@ app.get('/users/:id', (req, res) => {
   if (user) {
     res.json(user);
   } else {
-    res.status(404).json({Error: "Usuario no encontrado"});
+    res.status(404).json({Error: "Usuario no encontrado" });
   }
 });
 
+// Agregar un nuevo usaurio
 app.post('/users/', (req, res) => {
-  const user = req.body;
-  user.id = user.lenght + 1;
-  user.push(user);
-  res.json(user)
-})
+  const {nombre, apellido, telefono} = req.body;
+
+  // Comprobación de los datos
+  if (!nombre || !apellido || !telefono) {
+    return res.status(400).json({ error: "Datos incompletos" });
+  }
+
+  const nuevoUsurio = {
+    id: data.length + 1, // Crear el nuevo id
+    nombre,
+    apellido,
+    telefono,
+  };
+
+  data.push(nuevoUsurio); // Añadir usario al array de data
+  res.status(201).json(nuevoUsurio); // Respuesta de que se creo
+});
 
 app.use('/api/v1', api);
 
