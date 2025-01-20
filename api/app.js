@@ -28,12 +28,12 @@ MongoClient.connect(uri)
 // app.use(helmet());
 app.use(cors());
 
-// Mensaje predeterminado
-app.get('/', (req, res) => {
-  res.json({
-    message: '😈🔥✨👋🌎🌍🌏✨🔥😈',
-  });
-});
+// // Mensaje predeterminado
+// app.get('/', (req, res) => {
+//   res.json({
+//     message: '😈🔥✨👋🌎🌍🌏✨🔥😈',
+//   });
+// });
 
 // ✅ Obtener todos los usuarios
 app.get('/api/users', async (req, res) => {
