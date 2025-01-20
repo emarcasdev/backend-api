@@ -22,6 +22,7 @@ MongoClient.connect(uri)
   })
   .catch(err => {
     console.error('Error no se pudo conectar a MongoDB:', err);
+    process.exit(1);
   });
 
 // app.use(morgan('dev'));
@@ -98,8 +99,8 @@ app.post('/api/users', async (req, res) => {
     // Creamos el nuevo usuario para agregarlo a la coleccion
     const newUser = {
       id: userCount + 1,
-      nombre: nombre,
-      apellido: apellido,
+      nombre,
+      apellido,
       tlfn: telefono
     };
     // Consulta para insertar un documento a la coleccion
