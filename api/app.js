@@ -13,24 +13,23 @@ const app = express();
 
 // Conexión a MongoDB
 const uri = "mongodb+srv://emarcasdev:Lgv5EiO0N1RAxRiX@emarcasdev.hlq6d.mongodb.net/?retryWrites=true&w=majority&appName=emarcasdev";
-let database; 
+let database;
 
 MongoClient.connect(uri)
   .then(client => {
-    database = client.db('express_back'); 
+    database = client.db('express_back');
     console.log('Conectado a MongoDB');
   })
   .catch(err => {
-    console.error('Error no se puedo conectar a MongoDB:', err);
+    console.error('Error no se pudo conectar a MongoDB:', err);
   });
 
 // app.use(morgan('dev'));
 // app.use(helmet());
 // app.use(cors());
-app.use(express.json());
 
 // ✅ Obtener todos los usuarios
-app.get('/users', async (req, res) => {
+app.get('/api/users', async (req, res) => {
   try {
     // Seleccionamos la coleccion que necesitamos
     const collection = database.collection('users');
@@ -44,7 +43,7 @@ app.get('/users', async (req, res) => {
 });
 
 // ✅ Obtener el primer usuario
-app.get('/users/user1/', async (req, res) => {
+app.get('/api/users/user1/', async (req, res) => {
   try {
     // Seleccionamos la coleccion que necesitamos
     const collection = database.collection('users'); 
@@ -58,7 +57,7 @@ app.get('/users/user1/', async (req, res) => {
 });
 
 // ✅ Obtener un usuario específico por ID
-app.get('/users/:id', async (req, res) => {
+app.get('/api/users/:id', async (req, res) => {
   // Recuperamos el id del front para filtrar
   const id_search = req.params.id;
   try {
@@ -78,7 +77,7 @@ app.get('/users/:id', async (req, res) => {
 });
 
 // ✅ Agregar un nuevo usuario
-app.post('/users', async (req, res) => {
+app.post('/api/users', async (req, res) => {
   // Recuperamos los datos necesarios del front
   const { nombre, apellido, telefono } = req.body;
   // Seleccionamos la coleccion que necesitamos
