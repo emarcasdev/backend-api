@@ -1,7 +1,7 @@
 const express = require('express');
 // const morgan = require('morgan');
 // const helmet = require('helmet');
-// const cors = require('cors');
+const cors = require('cors');
 const { MongoClient } = require('mongodb');
 
 // require('dotenv').config();
@@ -26,7 +26,7 @@ MongoClient.connect(uri)
 
 // app.use(morgan('dev'));
 // app.use(helmet());
-// app.use(cors());
+app.use(cors());
 
 // ✅ Obtener todos los usuarios
 app.get('/api/users', async (req, res) => {
