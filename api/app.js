@@ -88,7 +88,7 @@ app.get('/api/users/:id', async (req, res) => {
 // ✅ Agregar un nuevo usuario
 app.post('/api/users', async (req, res) => {
   // Recuperamos los datos necesarios del front
-  const { nombre, apellido, telefono } = req.body;
+  const { nombre, apellido, tlfn } = req.body;
   // Seleccionamos la coleccion que necesitamos
   const collection = database.collection('users'); 
 
@@ -100,7 +100,7 @@ app.post('/api/users', async (req, res) => {
       id: userCount + 1,
       nombre,
       apellido,
-      telefono
+      tlfn
     };
     // Consulta para insertar un documento a la coleccion
     const result = await collection.insertOne(newUser); 
