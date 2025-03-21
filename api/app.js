@@ -12,7 +12,7 @@ const { MongoClient } = require('mongodb');
 const app = express();
 
 // Conexión a MongoDB
-const uri = "mongodb+srv://emarcasdev:Lgv5EiO0N1RAxRiX@emarcasdev.hlq6d.mongodb.net/?retryWrites=true&w=majority&appName=emarcasdev";
+const uri = "mongodb://admin:admin123@mongo:27017/?authSource=admin";
 let database;
 
 MongoClient.connect(uri)
